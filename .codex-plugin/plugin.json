@@ -1,0 +1,34 @@
+{
+  "name": "codex-traffic-light",
+  "version": "0.1.0",
+  "description": "A floating traffic light that shows Codex working, approval, and completion states.",
+  "author": {
+    "name": "taoyueping"
+  },
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "status",
+    "traffic-light",
+    "approval",
+    "windows"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Traffic Light",
+    "shortDescription": "See working, approval, and completion states",
+    "longDescription": "Shows a small always-on-top traffic light for Codex Desktop. Yellow means Codex is working, flashing yellow means approval is required, green means the run is complete, and red means no readable session is available.",
+    "developerName": "taoyueping",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "启动 Codex 红绿灯",
+      "关闭 Codex 红绿灯",
+      "设置 Codex 红绿灯开机自启"
+    ],
+    "brandColor": "#F5B82E",
+    "composerIcon": "./assets/traffic-light.svg"
+  }
+}
