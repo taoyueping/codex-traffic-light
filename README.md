@@ -2,6 +2,10 @@
 
 A small Windows always-on-top traffic light for Codex Desktop.
 
+![Codex Traffic Light preview](assets/codex-traffic-light-preview.png)
+
+[中文说明](README.zh-CN.md)
+
 ## Requirements
 
 - Windows 10 or later
