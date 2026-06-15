@@ -129,7 +129,7 @@ function Get-CodexSessionState {
             if (
                 $payload.type -eq "message" -and
                 $payload.role -eq "assistant" -and
-                $payload.phase -eq "final"
+                $payload.phase -in @("final", "final_answer")
             ) {
                 $active = $false
                 $pendingCalls = @{}
@@ -138,6 +138,19 @@ function Get-CodexSessionState {
         }
 
         if ($record.type -eq "event_msg") {
+            if ($record.payload.type -eq "task_started") {
+                $active = $true
+                $errorState = $false
+                $pendingCalls = @{}
+                continue
+            }
+
+            if ($record.payload.type -eq "task_complete") {
+                $active = $false
+                $pendingCalls = @{}
+                continue
+            }
+
             if ($record.payload.type -in @("turn_aborted", "turn_error", "error")) {
                 $active = $false
                 $errorState = $true

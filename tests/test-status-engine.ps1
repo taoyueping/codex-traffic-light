@@ -87,6 +87,42 @@ try {
     Write-Records -Records @($userRecord, $approvalRecord, $approvalOutput, $finalRecord)
     Assert-State -Expected "complete"
 
+    $taskStarted = @{
+        timestamp = "2026-06-15T10:00:04Z"
+        type = "event_msg"
+        payload = @{
+            type = "task_started"
+        }
+    }
+
+    Write-Records -Records @($taskStarted)
+    Assert-State -Expected "working"
+
+    $finalAnswerRecord = @{
+        timestamp = "2026-06-15T10:00:05Z"
+        type = "response_item"
+        payload = @{
+            type = "message"
+            role = "assistant"
+            phase = "final_answer"
+            content = @()
+        }
+    }
+
+    Write-Records -Records @($taskStarted, $finalAnswerRecord)
+    Assert-State -Expected "complete"
+
+    $taskComplete = @{
+        timestamp = "2026-06-15T10:00:06Z"
+        type = "event_msg"
+        payload = @{
+            type = "task_complete"
+        }
+    }
+
+    Write-Records -Records @($taskStarted, $taskComplete)
+    Assert-State -Expected "complete"
+
     Write-Output "Status engine tests passed."
 }
 finally {
